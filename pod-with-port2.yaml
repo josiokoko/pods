@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: second-pod-with-port
+  labels:
+    course: kubernetes
+spec:
+  containers:
+  - name: second-pod
+    image: nginx
+    ports:
+    - containerPort: 80

@@ -1,0 +1,143 @@
+PODs
+===
+
+Creating Pods:
+
+			CRUD ==> RESTful API
+
+kubectl run
+kubectl get
+kubectl describe 
+kubectl delete
+
+kubectl logs
+
+(i) Imperatively: kubectl CLI
+
+	kubectl run my-pod1 --image=nginx
+
+	kubectl run --help
+
+ 	kubectl run hazelcast --image=hazelcast/hazelcast --labels="app=hazelcast,env=prod"
+
+
+	Flags
+	=====
+ 		-o yaml
+ 
+		-o wide
+
+	kubectl run my-pod1 --image=nginx
+	kubectl run nginx1 --image=nginx:alpine
+
+	kubectl get po
+  	kubectl describe po nginx1
+	kubectl get po -o wide
+
+	kubectl run nginx2 --image=nginx:alpine -o yaml --dry-run=client
+
+
+(2) Declaratively using YAML file
+
+	- create a YAML file and name it nginx.yaml 
+
+		apiVersion: v1
+		kind: Pod
+		metadata:
+  		name: nginx3
+		spec:
+  			containers:
+  			- name: nginx-example-container
+    		  image: nginx
+
+	- Add the Pod configuration (check your folder)
+
+	kubectl create -f nginx.yaml
+
+
+
+
+	kubectl run new-nginx --image=nginx -o yaml --dry-run=client > newpod.yaml
+
+	Create alias for kubectl
+		alias k=kubectl
+		
+		alias kgp=kubectl get pods
+
+
+Namespace:
+	- k8s object
+	- Isolation
+
+	kubectl create namespace raycoy
+	kubectl get namespace
+
+	kubectl run redis-pod --image=redis:alpine --namespace raycoy
+
+	kubectl run redis-default-ns --image=redis:alpine
+
+
+Labels:
+	k get po --show-labels -n raycoy 
+	k get po -l app=redis -n raycoy
+
+	Set-based filtering:
+		k get po -l="app in (redis,webserver)" -n raycoy
+
+	Equality-based:
+		kubectl get po -n raycoy -l="app=redis"
+		kubectl get po -n raycoy -l run=redis-pod
+
+	kubectl run hazelcast --image=hazelcast/hazelcast --labels="app=hazelcast,env=prod"
+	kubectl get po -l="env=dev" --show-labels
+
+
+Port:   
+	Pod that exposes a port number
+	
+	IMPERATIVELY:
+	--port='':
+        The port that this container exposes.
+	
+	kubectl run nginx-wort-port --image=nginx --port=80 --labels="course=devops"
+
+	kubectl create -f pod-with-port2.yaml
+
+
+Multi-Container Pods:
+	cp pod-with-port2.yaml multi-container-pod.yaml
+
+	kubectl create -f multi-container-pod.yaml
+
+	kubectl logs multi-container-pod -c second-pod
+  	kubectl logs multi-container-pod -c second-pod -f
+  	kubectl logs multi-container-pod -c first-pod -f
+
+
+	kubectl get po
+  	kubectl logs newcast
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

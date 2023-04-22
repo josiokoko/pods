@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    app: redis
+  name: redis-raycoy-ns
+  namespace: raycoy
+spec:
+  containers:
+  - image: redis:alpine
+    name: redis-default-ns
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

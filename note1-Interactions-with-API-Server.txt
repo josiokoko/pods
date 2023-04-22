@@ -1,0 +1,29 @@
+Interactions with API Server
+
+	(1) Configuration File
+			- KubeConfig File
+
+			- $HOME/.kube/config <===> kubectl
+
+	(2) kubectl
+		
+		i) Imperative approach using kubectl CLI
+		
+		ii) Declarative approach using YAML configuration file (a.k.a manifests)
+
+
+Important Commands:
+	kubectl explain
+	kubectl api-versions
+	kubectl api-resources
+
+
+Workloads:
+- the object that you use to run your application
+- Different workloads:
+	Pods
+	ReplicaSet
+	Deployment
+	Job & CronJon
+	StatefulSet
+	DaemonSet

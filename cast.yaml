@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: newcast
+    env: dev
+    test: prelim
+  name: newcast
+spec:
+  containers:
+  - image: hazelcast/hazelcast
+    name: newcast
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
